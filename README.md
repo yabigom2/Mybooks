@@ -242,53 +242,56 @@ Future<String> getName() {
 
 
 
-### 3.7. Stateful Widget Lifecycle
+#### 3.7. Stateful Widget Lifecycle
 - Flutter에서는 단순히 화면을 구성하는 Stateless Widget 과는 달리 Stateful 위젯은 항상 변화하는 상태의 Widget 이기 때문에 Lifecycle 를 가지고 있다.
 
 - 아래의 그림은 StatueFulWidget 의 생성부터 종료 되기 까지의 Lifecycle 의 흐름에 대해 설명한다.
 
   
-
   ![Flutter Lifecycle](./image/lifecycle.png)
 
 
 
-#### 3.7.1. createState()
+##### 3.7.1. createState()
 
 - 신규 Stateful Widget을 생성할 때 호출된다.
+
 - Widget tree 에 state를 생성한다.
 
+  
 
 
-#### 3.7.1. initState()
+##### 3.7.2. initState()
 
 - 위젯이 생성될때 최초 1회만 호출된다.
 
 - 반드시 super.initState()를 호출해야하며 이곳에서 데이터 초기화 등을 진행한다.
 
   
-
-#### 3.7.2. didChangeDependencies()
+##### 3.7.3. didChangeDependencies()
 - initState() 다음에 호출 되며 데이터에 의존하는 위젯 객체가 호출될때마다 호출된다.
 
   
 
-#### 3.7.3. build()
+
+##### 3.7.4. build()
 - StatefulWidget 에 변화가 생길 때 주기적으로 호출된다.
+
 - 화면이 그려지는 렌더링 개념이 강하며 60fps의 속도로 갱신한다.
+
 - 반드시 Widget을 리턴해야한다.
 
+  
 
 
-#### 3.7.4. didUpdateWidget()
+##### 3.7.5. didUpdateWidget()
 
 - 상위 위젯이 변경되어 하위 위젯을 재 구성이 필요한 경우 호출된다.
 
 - 이곳에서 데이터 등을 초기화 할 수 있다.
 
   
-
-#### 3.7.5. setState()
+##### 3.7.6. setState()
 
 - 데이터가 변경되었음을 Framework 에 알려주는 함수로  UI를 갱신 할 수 있도록 한다.
 
@@ -296,22 +299,18 @@ Future<String> getName() {
 
   
 
-#### 3.7.6. deactivate()
+##### 3.7.7. deactivate()
 
 - WidgetTree 에서 State 객체가 제거 될 때 호출 된다.
 - State 객체가 메모리에서 완전히 지워진건 아니기 때문에 dispose() 전까지 State 객체를 사용 할 수 있다.
 
 
 
-#### 3.7.7. dispose()
+##### 3.7.8. dispose()
 
 - Widget 객체가 영구적으로 제거 될 때 호출 된다.
 
   
-
-
-
-
 
 
 
@@ -380,7 +379,7 @@ class BookListState extends State<BookListApp> {
     }
 }
 ```
-
+[관련 코드](https://github.com/yabigom2/Mybooks/blob/2f544546db1ef7e02877263c8b1d18ece992dd28/lib/main.dart#L95)
 
 
 
@@ -417,6 +416,8 @@ class DatabaseManager {
    }
 }
 ```
+ [관련 코드](https://github.com/yabigom2/Mybooks/blob/2f544546db1ef7e02877263c8b1d18ece992dd28/lib/database/databaseManager.dart#L6)
+
 
 
 
@@ -479,6 +480,8 @@ class DatabaseManager {
     });
   }
 ```
+ [관련 코드](https://github.com/yabigom2/Mybooks/blob/2f544546db1ef7e02877263c8b1d18ece992dd28/lib/database/databaseManager.dart#L38)
+
 
 
 
@@ -492,7 +495,7 @@ class DatabaseManager {
   void requestGetBookInfo(String isbn) async {
     var url = 'https://dapi.kakao.com/v3/search/book?target=isbn&query=' + isbn;
     var response = await http.get(Uri.parse(url),
-        headers: {"Authorization": "KakaoAK xxxxxxxxxxxxxxxxxxxxx"});
+        headers: {"Authorization": "KakaoAK 0327f22e3dc390bb643bbef740267806"});
 
     // Data Pasing 진행
     var converted = json.decode(response.body);
@@ -520,6 +523,8 @@ class DatabaseManager {
     }
   }
 ```
+[관련 코드](https://github.com/yabigom2/Mybooks/blob/2f544546db1ef7e02877263c8b1d18ece992dd28/lib/main.dart#L124)
+
 
 
 
@@ -552,6 +557,8 @@ dependencies:
     }
   }
 ```
+[관련 코드](https://github.com/yabigom2/Mybooks/blob/2f544546db1ef7e02877263c8b1d18ece992dd28/lib/main.dart#L110)
+
 
 
 
@@ -578,6 +585,8 @@ flutter:
      },
 ),
 ```
+[관련 코드](https://github.com/yabigom2/Mybooks/blob/2f544546db1ef7e02877263c8b1d18ece992dd28/lib/main.dart#L293)
+
 
 
 
