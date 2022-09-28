@@ -492,7 +492,7 @@ class DatabaseManager {
   void requestGetBookInfo(String isbn) async {
     var url = 'https://dapi.kakao.com/v3/search/book?target=isbn&query=' + isbn;
     var response = await http.get(Uri.parse(url),
-        headers: {"Authorization": "KakaoAK 0327f22e3dc390bb643bbef740267806"});
+        headers: {"Authorization": "KakaoAK xxxxxxxxxxxxxxxxxxxxx"});
 
     // Data Pasing 진행
     var converted = json.decode(response.body);
